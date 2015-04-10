@@ -51,11 +51,11 @@ int main(int argc, char** argv)
 	moveit::planning_interface::MoveGroup right_group("right_arm");
 	
 	//Planning parameters 
-	left_group.setNumPlanningAttempts(4);
-	left_group.setPlanningTime(5.0);
+	//left_group.setNumPlanningAttempts(4);
+	//left_group.setPlanningTime(5.0);
 	
-	right_group.setNumPlanningAttempts(4);
-	right_group.setPlanningTime(5.0);
+	//right_group.setNumPlanningAttempts(4);
+	//right_group.setPlanningTime(5.0);
 	
 	
 	//Changing default planner to new one
@@ -88,13 +88,13 @@ int main(int argc, char** argv)
  		{ 
  			std::cout<<"Received Gesture A "<<std::endl;//Debug Code
  			
- 			targetPose.position.x=0.803649419459;	//Set the end effector pose values for each gesture
-			targetPose.position.y=0.276442348416;
-			targetPose.position.z=-0.157090056159;
-			targetPose.orientation.x=0.879319704916;
-			targetPose.orientation.y=0.281886732657;
-			targetPose.orientation.z=0.359421220203;
-			targetPose.orientation.w=-0.134733488657;
+ 			targetPose.position.x=0.77;	//Set the end effector pose values for each gesture
+			targetPose.position.y=0.18;
+			targetPose.position.z=-0.08;
+			targetPose.orientation.x=-0.3351;
+			targetPose.orientation.y=0.9179;
+			targetPose.orientation.z=0.1863;
+			targetPose.orientation.w=0.1016;
 			arm_at = p;
 			p=0;
 			action = true;
@@ -104,13 +104,13 @@ int main(int argc, char** argv)
 		else if(p == 66)//char B
  		{ 
  			std::cout<<"Received Gesture B "<<std::endl;//Debug Code
- 			targetPose.position.x=0.717970866314;	//Set the end effector pose values for each gesture
-			targetPose.position.y=0.0100056636139;
-			targetPose.position.z=-0.150521111908;
-			targetPose.orientation.x=0.325363778735;
-			targetPose.orientation.y=0.945401924539;
-			targetPose.orientation.z=0.00738698618437;
-			targetPose.orientation.w=0.0172929176549;
+ 			targetPose.position.x=0.79;	//Set the end effector pose values for each gesture
+			targetPose.position.y=-0.02;
+			targetPose.position.z=-0.15;
+			targetPose.orientation.x=0.0268;
+			targetPose.orientation.y=0.9981;
+			targetPose.orientation.z=-0.0050;
+			targetPose.orientation.w=0.0543;
 			arm_at = p;
 			p=0;
 			action = true;
@@ -118,13 +118,13 @@ int main(int argc, char** argv)
 		else if(p == 67)//char C
  		{ 
  			std::cout<<"Received Gesture C "<<std::endl;//Debug Code
- 			targetPose.position.x=0.700446656582;	//Set the end effector pose values for each gesture
-			targetPose.position.y=-0.307275652487;
-			targetPose.position.z=-0.148630257636;
-			targetPose.orientation.x=-0.514525139783;
-			targetPose.orientation.y=0.753406720702;
-			targetPose.orientation.z=-0.405288697056;
-			targetPose.orientation.w=-0.0581658471183;
+ 			targetPose.position.x=0.72;	//Set the end effector pose values for each gesture
+			targetPose.position.y=-0.23;
+			targetPose.position.z=-0.15;
+			targetPose.orientation.x=-0.4123;
+			targetPose.orientation.y=0.8899;
+			targetPose.orientation.z=-0.1255;
+			targetPose.orientation.w=0.1487;
 			arm_at = p;
 			p=0;
 			action = true;
@@ -134,12 +134,12 @@ int main(int argc, char** argv)
 		if(action == true ){
 		
   			left_group.setPoseTarget(targetPose);
-  			left_group.setGoalPositionTolerance(0.1);
-			left_group.setGoalOrientationTolerance(0.4); 
+  			//left_group.setGoalPositionTolerance(0.1);
+			//left_group.setGoalOrientationTolerance(0.4); 
 			
   			right_group.setPoseTarget(targetPose);
-  			right_group.setGoalPositionTolerance(0.1);
-			right_group.setGoalOrientationTolerance(0.4); 
+  			//right_group.setGoalPositionTolerance(0.1);
+			//right_group.setGoalOrientationTolerance(0.4); 
   		
   			left_planning_time = ros::Time::now().toSec();
 			left_success = left_group.plan(left_plan);
@@ -159,8 +159,8 @@ int main(int argc, char** argv)
 			if( left_success == false && right_success == false ){
 		
 				std::cout << "Moving right arm to Random pose "<<std::endl;
-				//right_group.setRandomTarget();
-				//right_group.move();
+				right_group.setRandomTarget();
+				right_group.move();
 			}
 			else if(right_planning_time < left_planning_time){
 
