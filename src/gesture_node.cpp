@@ -1,3 +1,13 @@
+//===============================================================================//
+// Name			: gesture_node.cpp
+// Author(s)	: Yeshasvi TVS & Prashanth Ramadoss
+// Affiliation	: University of Genova, Italy - dept. DIBRIS
+// Version		: 1.0
+// Description	: Gesture node for baxter 
+//===============================================================================//
+
+
+
 #include <ros/ros.h>
 #include <geometry_msgs/Pose.h>
 #include <std_msgs/Char.h>
